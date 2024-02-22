@@ -1,0 +1,5 @@
+1 2 40585 234 2 i=0 del1  count5  i0
+2 40585 234 2 2 i=0 del2  count4  i0
+40585 234 2 2 2 i=0 del3  count3  i0
+234 2 2 2 2    i=1  del4  count2  i1
+

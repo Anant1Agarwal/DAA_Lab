@@ -37,18 +37,33 @@ int strongOrNot(int n)
 
 void deleteStrong(int arr[], int n, int *count)
 {
-
-    for (int i = 0; i < n; i++)
-    {
-        while (strongOrNot(arr[i]))
-        {
+    
+    // for (int i = 0; i < n; i++)
+    // {
+    //     while (strongOrNot(arr[i]))
+    //     {
+    //         (*count)--;
+    //         for (int j = i; j < *count; j++)
+    //         {
+    //             arr[j] = arr[j + 1];
+    //         }
+    //     }
+    // }
+    int i=0;
+    int del_count=0;
+    while(i<*count){
+        while(strongOrNot(arr[i]) && del_count<n && *count>i){
+            del_count++;
             (*count)--;
+            printf("\ndeleting %d...",arr[i]);
             for (int j = i; j < *count; j++)
             {
                 arr[j] = arr[j + 1];
             }
         }
+        i++;
     }
+
 }
 
 int main()
