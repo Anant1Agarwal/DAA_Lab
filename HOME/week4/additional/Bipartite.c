@@ -78,13 +78,13 @@ int CheckBipartiteUsingBFS(int n, int GadjMat[][n])
             int curColor = colors[s];
             if (GadjMat[s][i])
             {
-                if (vis[i] == 0)  //if its not colored
+                if (vis[i] == 0) // if its not colored
                 {
                     enqueue(q, i);
                     vis[i] = 1;
                     colors[i] = OppColor(curColor);
                 }
-                else if (colors[i] == curColor)  //if its already colored
+                else if (colors[i] == curColor) // if its already colored
                 {
                     return 0;
                 }
@@ -94,23 +94,26 @@ int CheckBipartiteUsingBFS(int n, int GadjMat[][n])
     return 1;
 }
 
-int DFSutil(int n, int GadjMat[][n],int u, int colors[],int color){
-    colors[u]=color;
+int DFSutil(int n, int GadjMat[][n], int u, int colors[], int color)
+{
+    colors[u] = color;
     printf("\n%d has color %d ", u, colors[u]);
-    
-    for(int j=0;j<n;j++){
-        if(colors[j]==color && GadjMat[u][j]){
+
+    for (int j = 0; j < n; j++)
+    {
+        if (colors[j] == color && GadjMat[u][j])
+        {
             return 0;
         }
-        if(colors[j]==-1 && GadjMat[u][j]){
-            if(DFSutil(n,GadjMat,j,colors,OppColor(color))==0){
-                    return 0;
+        if (colors[j] == -1 && GadjMat[u][j])
+        {
+            if (DFSutil(n, GadjMat, j, colors, OppColor(color)) == 0)
+            {
+                return 0;
             }
         }
-        
     }
     return 1;
-
 }
 
 int CheckBipartiteUsingDFS(int n, int GadjMat[][n])
@@ -120,16 +123,18 @@ int CheckBipartiteUsingDFS(int n, int GadjMat[][n])
     {
         colors[i] = -1;
     }
-    for(int i=0;i<n;i++){
-        if(colors[i]==-1){
-            if(DFSutil(n,GadjMat,i,colors,7)==0){
+    for (int i = 0; i < n; i++)
+    {
+        if (colors[i] == -1)
+        {
+            if (DFSutil(n, GadjMat, i, colors, 7) == 0)
+            {
                 return 0;
             }
         }
     }
     return 1;
-    }
-
+}
 
 int main()
 {
@@ -188,8 +193,6 @@ int main()
 // 0 1 0 1 0 0 0
 // 0 0 0 1 1 0 0
 
-
-
 // 0 1 0 0 0 0 0
 // 1 0 1 0 0 1 0
 // 0 0 1 0 1 0 1
@@ -204,7 +207,7 @@ int main()
 // 5 has color 7
 // 3 has color 11
 // Graph is NOT Bipartite!
-      
+
 // Your Matrix is:
 // 0 1 0 0 0 0
 // 1 0 1 0 1 0
@@ -229,7 +232,6 @@ int main()
 // 4 has color 7
 // 5 has color 7
 // Graph is Bipartite! using DFS
-
 
 // Your Matrix is:
 // 0 1 0 0 0 0 0 0

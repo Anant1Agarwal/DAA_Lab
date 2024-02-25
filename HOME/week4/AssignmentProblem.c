@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 int opcount = 0;
-//galat h
+
 void swap(int *a, int *b)
 {
     int temp = *a;
@@ -18,7 +18,7 @@ void printArray(int arr[], int n)
     }
 }
 
-void ChooseMinCostamongPermutations(int index, int arr[], int end, int Costs[end][end], int joblist[])
+void ChooseMinCostamongPermutations(int index, int arr[], int end, int Costs[][end + 1], int joblist[])
 {
     static int TotalCost = INT_MAX;
 
@@ -30,12 +30,13 @@ void ChooseMinCostamongPermutations(int index, int arr[], int end, int Costs[end
         // {
         //     temp[i] = arr[i];
         // }
-        printf("\neles are");
+        printf("\neles are ");
         for (int i = 0; i <= end; i++)
-        {   printf("%d ",arr[i]);
-            curCost += Costs[arr[i]][i];
+        {
+            printf("%d  ", arr[i]);
+            curCost += Costs[i][arr[i]];
         }
-        printf("curcost%d totalcose%d",curCost,TotalCost);
+        printf("curcost %d totalcost%d  ", curCost, TotalCost);
         if (curCost < TotalCost)
         {
             TotalCost = curCost;
@@ -44,6 +45,8 @@ void ChooseMinCostamongPermutations(int index, int arr[], int end, int Costs[end
                 joblist[i] = arr[i];
             }
         }
+        printArray(joblist, end + 1);
+        printf("\n");
     }
     for (int i = index; i <= end; i++)
     {
@@ -80,6 +83,15 @@ int main()
         tempjoblist[i] = i;
     }
 
-    ChooseMinCostamongPermutations(0, tempjoblist, n-1, Costs, joblist);
-    printArray(joblist, n);
+    ChooseMinCostamongPermutations(0, tempjoblist, n - 1, Costs, joblist);
+    printf("Assignment is: ");
+    int cost = 0;
+    for (int i = 0; i < n; i++)
+    {
+        printf("\nPerson %d does job %d", i + 1, joblist[i] + 1);
+        cost += Costs[i][joblist[i]];
+    }
+    printf("\nMinimum Total Cost to company is %d", cost);
 }
+
+// 9 2 7 8 6 4 3 7 5 8 1 8 7 6 9 4

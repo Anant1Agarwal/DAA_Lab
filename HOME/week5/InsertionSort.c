@@ -1,12 +1,20 @@
+
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
+
 int opcount = 0;
 
-void printAllSubsets(int arr[], int n)
-{
+void InsertionSort(int arr[], int n)
+{ for(int i=1;i<n;i++){
+    int key=arr[i];
+    int j=i-1;
+    while(j>=0 && arr[j]>key){
+        arr[j+1]=arr[j];
+        j--;
+    }
+    arr[j+1]=key;
+}    
 }
-
 void printArray(int arr[], int n)
 {
     for (int i = 0; i < n; i++)
@@ -32,8 +40,8 @@ int main()
     printf("Original array is:");
     printArray(a, n);
 
-    printf("All subsets of given array are:");
-    printAllSubsets(a, n);
+    InsertionSort(a,n);
 
-    printf("\nNo of operation count is %d", opcount);
+    printf("\nModified array is:");
+    printArray(a, n);
 }
